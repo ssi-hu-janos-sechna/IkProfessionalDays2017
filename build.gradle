@@ -1,12 +1,16 @@
 buildscript {
     ext {
         springBootVersion = '1.5.2.RELEASE'
+        springCloudVersion = 'Camden.SR6'
+        cloudConfigUrl = 'http://config:8080'
     }
     repositories {
         mavenCentral()
+        jcenter()
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath "se.transmode.gradle:gradle-docker:1.2"
     }
 }
 
@@ -14,7 +18,30 @@ repositories {
     mavenCentral()
 }
 
-subprojects {
+apply plugin: 'docker'
+
+rootProject.subprojects {
+
+    group = 'ikprofessionaldays2017'
+
     apply plugin: 'java'
     apply plugin: 'idea'
+    apply plugin: 'docker'
+
+    task buildDocker(type: Docker) {
+        push = false
+        applicationName = jar.baseName.toLowerCase()
+        dockerfile = file('Dockerfile')
+        doFirst {
+            copy {
+                from jar
+                into stageDir
+            }
+        }
+    }
+
+    build.dependsOn buildDocker
+    buildDocker.dependsOn clean
+    buildDocker.dependsOn assemble
+    assemble.mustRunAfter clean
 }

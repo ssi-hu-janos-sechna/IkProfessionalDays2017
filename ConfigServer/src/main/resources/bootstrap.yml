@@ -1,3 +1,12 @@
 spring:
   application:
-    name: ConfigServer
+    name: ${project.name}
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/ssi-hu-janos-sechna/IkProfessionalDays2017Config
+          searchPaths: '{application}'
+logging:
+  level:
+    root: warn

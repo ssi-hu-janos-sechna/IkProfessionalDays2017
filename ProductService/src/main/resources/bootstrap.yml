@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: ${project.name}
+  h2:
+    console:
+      enabled: true
+      path: /console
+  datasource:
+    platform: h2
+    name: products
+  jpa:
+    hibernate:
+      ddl-auto: create
+  cloud:
+    config:
+      uri: ${cloudConfigUrl}

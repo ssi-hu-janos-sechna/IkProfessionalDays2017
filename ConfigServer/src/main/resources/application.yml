@@ -1,9 +1,0 @@
-spring:
-  cloud:
-    config:
-      server:
-        git:
-          uri: https://github.com/ssi-hu-janos-sechna/IkProfessionalDays2017Config
-          searchPaths: '{application}'
-server:
-  port: 8080

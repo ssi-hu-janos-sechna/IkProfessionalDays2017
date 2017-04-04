@@ -1,1 +1,10 @@
-include 'ConfigServer'
+rootProject.name = 'IkProfessionalDays2017'
+
+include 'ConfigServer', 'EurekaServer', 'ZuulGateway', 'SpringBootAdmin', 'ZipkinService'
+
+include 'UserService'
+include 'DepotService'
+include 'ProductService'
+include 'OrderService'
+include 'StorageService'
+include 'ApiGateway'

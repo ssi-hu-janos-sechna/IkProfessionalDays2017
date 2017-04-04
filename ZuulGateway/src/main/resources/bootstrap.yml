@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: ${project.name}
+  cloud:
+    config:
+      uri: ${cloudConfigUrl}
+eureka:
+  client:
+    register-with-eureka: false
+
+zuul:
+  ignoredServices: '*'
+  routes:
+    apigateway:
+      path: /gateway/**
+      serviceId: APIGATEWAY

@@ -1,0 +1,110 @@
+version: '2.1'
+
+services:
+  springBootAdmin:
+    container_name: springBootAdmin
+    image: ikprofessionaldays2017/springbootadmin:1.0.0
+    ports:
+      - "8081:8081"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8081/health"]
+      interval: 3s
+      timeout: 15s
+      retries: 10
+
+  configServer:
+    container_name: config
+    image: ikprofessionaldays2017/configserver:1.0.0
+    depends_on:
+      springBootAdmin:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 3s
+      timeout: 15s
+      retries: 10
+
+  eurekaServer:
+    container_name: eureka
+    image: ikprofessionaldays2017/eurekaserver:1.0.0
+    depends_on:
+      configServer:
+        condition: service_healthy
+    ports:
+      - "8761:8761"
+    healthcheck:
+          test: ["CMD", "curl", "-f", "http://localhost:8761/manage/health"]
+          interval: 3s
+          timeout: 15s
+          retries: 10
+
+  zuulGateway:
+    container_name: zuulGateway
+    image: ikprofessionaldays2017/zuulgateway:1.0.0
+    depends_on:
+      eurekaServer:
+        condition: service_healthy
+    ports:
+      - "8080:8080"
+
+#  userService:
+#    container_name: userService
+#    image: ikprofessionaldays2017/userservice:1.0.0
+#    depends_on:
+#      eurekaServer:
+#        condition: service_healthy
+#
+#  orderService:
+#    container_name: orderService
+#    image: ikprofessionaldays2017/orderservice:1.0.0
+#    depends_on:
+#      eurekaServer:
+#        condition: service_healthy
+#
+#  depotService:
+#    container_name: depotService
+#    image: ikprofessionaldays2017/depotservice:1.0.0
+#    depends_on:
+#      eurekaServer:
+#        condition: service_healthy
+#
+#  storageService:
+#    container_name: storageService
+#    image: ikprofessionaldays2017/storageservice:1.0.0
+#    depends_on:
+#      eurekaServer:
+#        condition: service_healthy
+#
+#  productService:
+#    container_name: productService
+#    image: ikprofessionaldays2017/productservice:1.0.0
+#    depends_on:
+#      eurekaServer:
+#        condition: service_healthy
+
+
+  apiGateway:
+    container_name: apiGateway
+    image: ikprofessionaldays2017/apigateway:1.0.0
+    depends_on:
+      eurekaServer:
+        condition: service_healthy
+
+#  zipkinService:
+#    container_name: zipkinService
+#    image: ikprofessionaldays2017/zipkinservice:1.0.0
+#    ports:
+#      - "8082:8082"
+#    depends_on:
+#      eurekaServer:
+#        condition: service_healthy
+#
+#
+  rabbitmq:
+    container_name: rabbitmq
+    image: rabbitmq:management
+    ports:
+      - "5672:5672"
+
+networks:
+  default:

@@ -1,10 +1,13 @@
 apply plugin: 'org.springframework.boot'
 
 version = '1.0.0'
-description = 'ConfigServer'
+description = 'ZipkinService'
 
 dependencies {
-    compile('org.springframework.cloud:spring-cloud-config-server')
+    compile('org.springframework.cloud:spring-cloud-sleuth-zipkin-stream')
+    compile('org.springframework.cloud:spring-cloud-starter-stream-rabbit')
+    compile('org.springframework.cloud:spring-cloud-starter-config')
+    runtime('io.zipkin.java:zipkin-autoconfigure-ui')
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 
