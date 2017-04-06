@@ -33,6 +33,14 @@ public class StorageEntry {
         this.quantity = quantity;
     }
 
+    public StorageEntry(ActionType actionType, Long productId, Long depotId, Long userId, int quantity) {
+        this.actionType = actionType;
+        this.productId = productId;
+        this.depotId = depotId;
+        this.userId = userId;
+        this.quantity = quantity;
+    }
+
     public StorageEntry() {
     }
 

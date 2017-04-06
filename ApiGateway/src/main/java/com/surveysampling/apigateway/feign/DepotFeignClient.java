@@ -1,6 +1,7 @@
 package com.surveysampling.apigateway.feign;
 
 import com.surveysampling.apigateway.feign.models.Depot;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,16 +16,16 @@ import java.util.List;
  * Created by janos_sechna on 4/3/17.
  */
 @FeignClient("depotservice")
-@RequestMapping("/depots")
 public interface DepotFeignClient {
 
     @RequestMapping(method = RequestMethod.GET)
     List<Depot> getDepots();
 
-    @RequestMapping(value = "/{depotId}", method = RequestMethod.GET)
+    @Cacheable("depot")
+    @RequestMapping(value = "/depots/{depotId}", method = RequestMethod.GET)
     Depot getDepotById(@PathVariable("depotId") @Min(1) Long depotId);
 
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(value = "/depots", method = RequestMethod.POST)
     Depot addDepot(@RequestBody @Valid Depot depot);
 
 }

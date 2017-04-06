@@ -1,7 +1,5 @@
 package com.surveysampling.apigateway.feign.models;
 
-import org.hibernate.validator.constraints.NotEmpty;
-
 /**
  * Created by janos_sechna on 4/2/17.
  */
@@ -9,7 +7,6 @@ public class Category {
 
     private Long id;
 
-    @NotEmpty
     private String name;
 
     public Long getId() {

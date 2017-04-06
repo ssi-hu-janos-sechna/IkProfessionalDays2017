@@ -47,41 +47,49 @@ services:
     ports:
       - "8080:8080"
 
-#  userService:
-#    container_name: userService
-#    image: ikprofessionaldays2017/userservice:1.0.0
-#    depends_on:
-#      eurekaServer:
-#        condition: service_healthy
-#
-#  orderService:
-#    container_name: orderService
-#    image: ikprofessionaldays2017/orderservice:1.0.0
-#    depends_on:
-#      eurekaServer:
-#        condition: service_healthy
-#
-#  depotService:
-#    container_name: depotService
-#    image: ikprofessionaldays2017/depotservice:1.0.0
-#    depends_on:
-#      eurekaServer:
-#        condition: service_healthy
-#
-#  storageService:
-#    container_name: storageService
-#    image: ikprofessionaldays2017/storageservice:1.0.0
-#    depends_on:
-#      eurekaServer:
-#        condition: service_healthy
-#
-#  productService:
-#    container_name: productService
-#    image: ikprofessionaldays2017/productservice:1.0.0
-#    depends_on:
-#      eurekaServer:
-#        condition: service_healthy
+  userService:
+    container_name: userService
+    image: ikprofessionaldays2017/userservice:1.0.0
+    depends_on:
+      eurekaServer:
+        condition: service_healthy
 
+  orderService:
+    container_name: orderService
+    image: ikprofessionaldays2017/orderservice:1.0.0
+    depends_on:
+      eurekaServer:
+        condition: service_healthy
+
+  depotService:
+    container_name: depotService
+    image: ikprofessionaldays2017/depotservice:1.0.0
+    depends_on:
+      eurekaServer:
+        condition: service_healthy
+
+  storageService:
+    container_name: storageService
+    image: ikprofessionaldays2017/storageservice:1.0.0
+    depends_on:
+      eurekaServer:
+        condition: service_healthy
+
+  productService:
+    container_name: productService
+    image: ikprofessionaldays2017/productservice:1.0.0
+    depends_on:
+      eurekaServer:
+        condition: service_healthy
+
+  microserviceDashboard:
+    container_name: microserviceDashboard
+    image: ikprofessionaldays2017/microservicedashboard:1.0.0
+    ports:
+          - "8083:8083"
+    depends_on:
+      eurekaServer:
+        condition: service_healthy
 
   apiGateway:
     container_name: apiGateway
@@ -90,16 +98,15 @@ services:
       eurekaServer:
         condition: service_healthy
 
-#  zipkinService:
-#    container_name: zipkinService
-#    image: ikprofessionaldays2017/zipkinservice:1.0.0
-#    ports:
-#      - "8082:8082"
-#    depends_on:
-#      eurekaServer:
-#        condition: service_healthy
-#
-#
+  zipkinService:
+    container_name: zipkinService
+    image: ikprofessionaldays2017/zipkinservice:1.0.0
+    ports:
+      - "8082:8082"
+    depends_on:
+      eurekaServer:
+        condition: service_healthy
+
   rabbitmq:
     container_name: rabbitmq
     image: rabbitmq:management

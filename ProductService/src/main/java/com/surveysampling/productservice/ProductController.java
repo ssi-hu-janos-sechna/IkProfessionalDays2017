@@ -33,9 +33,19 @@ public class ProductController {
         return productService.getCategories();
     }
 
+    @GetMapping("/{productId}")
+    Product getProductById(@PathVariable("productId") Long id) {
+        return productService.getProductById(id);
+    }
+
     @GetMapping("/{productId}/exist")
     boolean isProductExist(@PathVariable("productId") Long id) {
         return productService.isProductExist(id);
+    }
+
+    @RequestMapping(value = "/exist", method = RequestMethod.GET)
+    boolean isProductsExist(@RequestParam("productIds") List<Long> ids) {
+        return productService.isProductsExist(ids);
     }
 
     @GetMapping("category/{categoryId}")

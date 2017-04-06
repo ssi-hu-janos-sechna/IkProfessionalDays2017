@@ -1,6 +1,6 @@
 rootProject.name = 'IkProfessionalDays2017'
 
-include 'ConfigServer', 'EurekaServer', 'ZuulGateway', 'SpringBootAdmin', 'ZipkinService'
+include 'ConfigServer', 'EurekaServer', 'ZuulGateway', 'SpringBootAdmin', 'ZipkinService', 'MicroserviceDashboard'
 
 include 'UserService'
 include 'DepotService'

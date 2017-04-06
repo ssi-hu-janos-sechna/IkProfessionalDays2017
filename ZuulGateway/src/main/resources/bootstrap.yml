@@ -12,5 +12,5 @@ zuul:
   ignoredServices: '*'
   routes:
     apigateway:
-      path: /gateway/**
+      path: /humbakmuvek/**
       serviceId: APIGATEWAY

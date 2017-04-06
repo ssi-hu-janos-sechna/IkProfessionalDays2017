@@ -40,6 +40,10 @@ rootProject.subprojects {
         }
     }
 
+    repositories {
+        mavenCentral()
+    }
+
     build.dependsOn buildDocker
     buildDocker.dependsOn clean
     buildDocker.dependsOn assemble

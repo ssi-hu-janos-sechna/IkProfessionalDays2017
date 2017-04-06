@@ -61,4 +61,14 @@ public class ProductServiceImpl implements ProductService {
     public boolean isProductExist(Long id) {
         return productRepository.exists(id);
     }
+
+    @Override
+    public boolean isProductsExist(List<Long> ids) {
+        return ids.parallelStream().allMatch(productRepository::exists);
+    }
+
+    @Override
+    public Product getProductById(Long id) {
+        return productRepository.findOne(id);
+    }
 }

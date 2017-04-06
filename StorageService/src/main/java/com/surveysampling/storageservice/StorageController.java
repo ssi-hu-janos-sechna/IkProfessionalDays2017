@@ -37,12 +37,12 @@ public class StorageController {
         return storageService.getAllStorageEntryForDepotById(depotId);
     }
 
-    @PutMapping("/list")
+    @PostMapping("/list")
     void addStorageEntries(@RequestBody List<StorageEntry> storageEntries) {
         storageService.addStorageEntries(storageEntries);
     }
 
-    @PutMapping
+    @PostMapping
     StorageEntry addStorageEntry(@RequestBody StorageEntry storageEntry) {
         return storageService.addStorageEntry(storageEntry);
     }

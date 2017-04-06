@@ -21,4 +21,8 @@ public interface ProductService {
     Category addCategory(Category category);
 
     boolean isProductExist(Long id);
+
+    boolean isProductsExist(List<Long> ids);
+
+    Product getProductById(Long id);
 }

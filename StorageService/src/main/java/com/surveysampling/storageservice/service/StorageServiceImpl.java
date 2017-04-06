@@ -39,11 +39,10 @@ public class StorageServiceImpl implements StorageService {
     @Transactional
     public void addStorageEntries(List<StorageEntry> storageEntries) {
         storageRepository.save(storageEntries);
-        storageEntries.parallelStream()
-                .forEach(storageEntry -> {
-                    int quantity = storageEntry.getActionType() == ActionType.WITHDRAW ? (-storageEntry.getQuantity()) : storageEntry.getQuantity();
-                    depotFeignClient.updateDepotStorageStatus(storageEntry.getDepotId(), quantity);
-                });
+        storageEntries.forEach(storageEntry -> {
+            int quantity = storageEntry.getActionType() == ActionType.WITHDRAW ? (-storageEntry.getQuantity()) : storageEntry.getQuantity();
+            depotFeignClient.updateDepotStorageStatus(storageEntry.getDepotId(), quantity);
+        });
     }
 
     @Override

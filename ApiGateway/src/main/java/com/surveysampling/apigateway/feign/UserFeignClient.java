@@ -16,15 +16,14 @@ import javax.validation.constraints.Min;
  * Created by janos_sechna on 4/3/17.
  */
 @FeignClient("userservice")
-@RequestMapping("/users")
 public interface UserFeignClient {
 
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    @RequestMapping(value = "/users/login", method = RequestMethod.POST)
     String login(@RequestBody @Valid Credentials credentials);
 
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    @RequestMapping(value = "/users/register", method = RequestMethod.POST)
     RegisterResponse register(@RequestBody @Valid Credentials credentials);
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/users/{id}", method = RequestMethod.GET)
     User getUserById(@PathVariable("id") @Min(1) int id);
 }

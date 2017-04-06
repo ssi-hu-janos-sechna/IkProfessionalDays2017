@@ -14,5 +14,4 @@ spring:
   cloud:
     config:
       uri: ${cloudConfigUrl}
-  rabbitmq:
-    addresses:
+
