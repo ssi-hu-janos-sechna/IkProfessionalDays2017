@@ -63,11 +63,13 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public boolean isProductsExist(List<Long> ids) {
         return ids.parallelStream().allMatch(productRepository::exists);
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Product getProductById(Long id) {
         return productRepository.findOne(id);
     }

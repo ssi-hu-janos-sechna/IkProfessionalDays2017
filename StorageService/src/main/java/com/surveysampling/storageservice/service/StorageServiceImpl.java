@@ -62,4 +62,9 @@ public class StorageServiceImpl implements StorageService {
     public List<StorageEntry> getAllStorageEntryForDepotById(Long id) {
         return storageRepository.findAllByDepotId(id);
     }
+
+    @Override
+    public List<StorageEntry> getAllStorageEntryForProductById(Long productId) {
+        return storageRepository.findAllByProductId(productId);
+    }
 }

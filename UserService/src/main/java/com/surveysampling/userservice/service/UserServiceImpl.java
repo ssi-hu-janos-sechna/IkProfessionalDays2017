@@ -5,7 +5,6 @@ import com.surveysampling.userservice.repository.RoleRepository;
 import com.surveysampling.userservice.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.HttpClientErrorException;
@@ -23,9 +22,6 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private RoleRepository roleRepository;
 
-    @Autowired
-    private BCryptPasswordEncoder passwordEncoder;
-
     @Override
     @Transactional(readOnly = true)
     public User getUserById(long id) {
@@ -36,7 +32,7 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public User saveUser(User user) {
         user.setRole(roleRepository.findOne(2L));
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setPassword(user.getPassword());
         return userRepository.save(user);
     }
 

@@ -1,40 +1,33 @@
-package com.surveysampling.orderservice.model;
+package com.surveysampling.apigateway.model;
 
-import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
 /**
  * Created by janos_sechna on 4/2/17.
  */
-@Entity
-@Table(name = "orders")
 public class OrderEntry {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private Date orderDate;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
-    @JoinTable(name = "orders_products", joinColumns = @JoinColumn(name = "id"), inverseJoinColumns = @JoinColumn(name = "product_id"))
     private List<OrderedProducts> products;
 
-    @Enumerated(EnumType.STRING)
     private OrderStatus status;
 
     private Long userId;
 
-    @PrePersist
-    protected void onCreate() {
-        orderDate = new Date();
-    }
-
-    public OrderEntry(Date orderDate, List<OrderedProducts> products, OrderStatus status, Long userId) {
+    public OrderEntry(Long id, Date orderDate, List<OrderedProducts> products, OrderStatus status, Long userId) {
+        this.id = id;
         this.orderDate = orderDate;
         this.products = products;
         this.status = status;
+        this.userId = userId;
+    }
+
+    public OrderEntry(List<OrderedProducts> products, Long userId) {
+        this.products = products;
         this.userId = userId;
     }
 

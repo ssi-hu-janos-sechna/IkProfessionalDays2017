@@ -21,10 +21,10 @@ public class StorageEntry {
     private Long userId;
 
     @Min(0)
-    private int quantity;
+    private Long quantity;
 
-
-    public StorageEntry(ActionType actionType, Date date, Long productId, Long depotId, Long userId, int quantity) {
+    public StorageEntry(Long id, ActionType actionType, Date date, Long productId, Long depotId, Long userId, Long quantity) {
+        this.id = id;
         this.actionType = actionType;
         this.date = date;
         this.productId = productId;
@@ -33,7 +33,7 @@ public class StorageEntry {
         this.quantity = quantity;
     }
 
-    public StorageEntry(ActionType actionType, Long productId, Long depotId, Long userId, int quantity) {
+    public StorageEntry(ActionType actionType, Long productId, Long depotId, Long userId, Long quantity) {
         this.actionType = actionType;
         this.productId = productId;
         this.depotId = depotId;
@@ -92,11 +92,11 @@ public class StorageEntry {
         this.userId = userId;
     }
 
-    public int getQuantity() {
+    public Long getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(Long quantity) {
         this.quantity = quantity;
     }
 }

@@ -37,6 +37,11 @@ public class StorageController {
         return storageService.getAllStorageEntryForDepotById(depotId);
     }
 
+    @GetMapping(value = "/product/{id}")
+    List<StorageEntry> getAllStorageEntryForProductById(@PathVariable("id") Long productId) {
+        return storageService.getAllStorageEntryForProductById(productId);
+    }
+
     @PostMapping("/list")
     void addStorageEntries(@RequestBody List<StorageEntry> storageEntries) {
         storageService.addStorageEntries(storageEntries);

@@ -1,26 +1,35 @@
 package com.surveysampling.apigateway.model;
 
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
-
 /**
- * Created by janos_sechna on 4/5/17.
+ * Created by janos_sechna on 4/9/17.
  */
-public class ProductEntry {
+public class OrderedProducts {
 
-    @NotNull
+    private Long id;
+
     private Long productId;
 
-    @NotNull
-    @Min(1)
     private Long quantity;
 
-    public ProductEntry() {
+    public OrderedProducts(ProductEntry productEntry) {
+        this.productId = productEntry.getProductId();
+        this.quantity = productEntry.getQuantity();
     }
 
-    public ProductEntry(Long productId, Long quantity) {
+    public OrderedProducts(Long productId, Long quantity) {
         this.productId = productId;
         this.quantity = quantity;
+    }
+
+    public OrderedProducts() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Long getProductId() {

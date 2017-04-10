@@ -11,12 +11,12 @@ public class DepotTransaction {
 
     private ActionType actionType;
 
-    private int quantity;
+    private Long quantity;
 
     public DepotTransaction() {
     }
 
-    public DepotTransaction(String productName, ActionType actionType, int quantity) {
+    public DepotTransaction(String productName, ActionType actionType, Long quantity) {
         this.productName = productName;
         this.actionType = actionType;
         this.quantity = quantity;
@@ -38,11 +38,11 @@ public class DepotTransaction {
         this.actionType = actionType;
     }
 
-    public int getQuantity() {
+    public Long getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(Long quantity) {
         this.quantity = quantity;
     }
 }

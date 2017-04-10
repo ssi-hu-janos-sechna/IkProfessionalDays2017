@@ -18,7 +18,7 @@ import java.util.List;
 @FeignClient("depotservice")
 public interface DepotFeignClient {
 
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(value = "/depots",method = RequestMethod.GET)
     List<Depot> getDepots();
 
     @Cacheable("depot")

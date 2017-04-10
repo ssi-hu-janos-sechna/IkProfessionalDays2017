@@ -19,4 +19,5 @@ public interface StorageService {
 
     List<StorageEntry> getAllStorageEntryForDepotById(Long depotId);
 
+    List<StorageEntry> getAllStorageEntryForProductById(Long productId);
 }

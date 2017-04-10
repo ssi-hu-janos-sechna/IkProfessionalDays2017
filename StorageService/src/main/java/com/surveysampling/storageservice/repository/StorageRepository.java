@@ -15,7 +15,8 @@ public interface StorageRepository extends CrudRepository<StorageEntry, Long> {
     @Override
     List<StorageEntry> findAll();
 
-
     List<StorageEntry> findAllByDepotId(Long id);
+
+    List<StorageEntry> findAllByProductId(Long id);
 
 }

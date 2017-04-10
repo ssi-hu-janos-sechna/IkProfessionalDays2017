@@ -18,7 +18,6 @@ public class StorageEntry {
     @Enumerated(EnumType.STRING)
     private ActionType actionType;
 
-    @Column(name = "START_DATE", columnDefinition = "DATE DEFAULT CURRENT_DATE", updatable = false)
     private Date date;
 
     private Long productId;
@@ -30,6 +29,10 @@ public class StorageEntry {
     @Min(0)
     private int quantity;
 
+    @PrePersist
+    protected void onCreate() {
+        date = new Date();
+    }
 
     public StorageEntry(ActionType actionType, Date date, Long productId, Long depotId, Long userId, int quantity) {
         this.actionType = actionType;

@@ -24,6 +24,9 @@ public interface StorageFeignClient {
     @RequestMapping(value = "/storage/depot/{id}", method = RequestMethod.GET)
     List<StorageEntry> getAllStorageEntryForDepotById(@PathVariable("id") Long depotId);
 
+    @RequestMapping(value = "/storage/product/{id}", method = RequestMethod.GET)
+    List<StorageEntry> getAllStorageEntryForProductById(@PathVariable("id") Long productId);
+
     @RequestMapping(value = "/storage/list", method = RequestMethod.POST)
     void addStorageEntries(@RequestBody List<StorageEntry> storageEntries);
 
